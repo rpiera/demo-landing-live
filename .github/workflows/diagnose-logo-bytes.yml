@@ -1,0 +1,67 @@
+name: Diagnose Casa Limon logo bytes
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/diagnose-logo-bytes.yml
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Compare defective and exact PNG blobs
+        run: |
+          set -euo pipefail
+          git show de4e82c370965cf3510db07ae749202f93fba542:casa-limon-logo.png > /tmp/old.png
+          cp casa-limon-logo.png /tmp/new.png
+          echo '=== size/hash ==='
+          wc -c /tmp/old.png /tmp/new.png
+          sha256sum /tmp/old.png /tmp/new.png
+          python3 - <<'PY'
+          import hashlib, struct, zlib
+          old=open('/tmp/old.png','rb').read(); new=open('/tmp/new.png','rb').read()
+          n=min(len(old),len(new))
+          diffs=[i for i in range(n) if old[i]!=new[i]]
+          print('=== byte diff ===')
+          print('old_size',len(old),'new_size',len(new))
+          print('first_diff', diffs[0] if diffs else None)
+          print('last_diff', diffs[-1] if diffs else None)
+          print('diff_count_overlap', len(diffs))
+          prefix=0
+          while prefix<n and old[prefix]==new[prefix]: prefix+=1
+          suffix=0
+          while suffix<n-prefix and old[len(old)-1-suffix]==new[len(new)-1-suffix]: suffix+=1
+          print('equal_prefix_bytes',prefix)
+          print('equal_suffix_bytes',suffix)
+          if diffs:
+              i=diffs[0]
+              print('old_at_first_diff',old[i:i+16].hex())
+              print('new_at_first_diff',new[i:i+16].hex())
+
+          def png_report(label,b):
+              print(f'=== PNG chunks {label} ===')
+              print('signature_ok', b[:8]==b'\x89PNG\r\n\x1a\n')
+              p=8
+              while p < len(b):
+                  if p+8>len(b):
+                      print('truncated_chunk_header_at',p); break
+                  length=struct.unpack('>I',b[p:p+4])[0]
+                  typ=b[p+4:p+8]
+                  end=p+12+length
+                  if end>len(b):
+                      print('truncated_chunk',typ.decode('latin1'), 'at',p,'declared_len',length,'available',len(b)-(p+8)); break
+                  data=b[p+8:p+8+length]
+                  stored=struct.unpack('>I',b[p+8+length:p+12+length])[0]
+                  calc=zlib.crc32(typ+data)&0xffffffff
+                  print('chunk',typ.decode('latin1'),'offset',p,'len',length,'crc_ok',stored==calc)
+                  p=end
+                  if typ==b'IEND':
+                      print('bytes_after_IEND',len(b)-p)
+                      break
+          png_report('old',old)
+          png_report('new',new)
+          PY
