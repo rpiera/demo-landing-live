@@ -7,3 +7,5 @@ URL de staging: <https://demo.raul.re>
 URL alternativa de Cloudflare Pages: <https://demo-landing-live.pages.dev>
 
 La página actual es únicamente un placeholder para validar la tubería de despliegue.
+
+> Prueba de escritura desde ChatGPT Web realizada el 12/09/2026.
