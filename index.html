@@ -1,17 +1,117 @@
 <!doctype html>
 <html lang="es">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Web no disponible temporalmente.">
-    <meta name="robots" content="noindex, nofollow">
-    <title>Web no disponible</title>
-    <link rel="stylesheet" href="styles.css">
-  </head>
-  <body>
-    <main>
-      <h1>Web no disponible</h1>
-      <p>Vuelve a intentarlo más adelante.</p>
-    </main>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="NODO NORTE · Arquitectura e interiorismo en Valencia. Viviendas, espacios de trabajo e interiores comerciales desde una mirada funcional y precisa.">
+  <meta name="robots" content="noindex, nofollow">
+  <title>NODO NORTE · Arquitectura e interiorismo</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#inicio" aria-label="NODO NORTE, inicio">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span>NODO NORTE</span>
+    </a>
+    <nav aria-label="Navegación principal">
+      <a href="#proyectos">Proyectos</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="eyebrow">Estudio de arquitectura e interiorismo · Valencia</div>
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <h1>Espacios que empiezan por una buena pregunta.</h1>
+          <p>Arquitectura e interiorismo para lugares que deben funcionar, durar y tener carácter.</p>
+          <a class="button" href="#proyectos">Ver proyectos <span aria-hidden="true">↘</span></a>
+        </div>
+        <div class="hero-figure" aria-label="Imagen arquitectónica provisional">
+          <div class="figure-grid" aria-hidden="true"></div>
+          <span class="figure-label">Imagen provisional / 01</span>
+          <span class="figure-axis">N 39°28′ · W 0°22′</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="intro section-rule">
+      <div class="section-index">01 / Estudio</div>
+      <p class="intro-text">En NODO NORTE diseñamos viviendas, espacios de trabajo e interiores comerciales desde una mirada funcional y precisa. Cada proyecto parte del contexto, las necesidades reales y una idea clara.</p>
+    </section>
+
+    <section class="services section-rule" id="servicios">
+      <div class="section-index">02 / Servicios</div>
+      <div class="service-list">
+        <article class="service">
+          <span class="service-number">01</span>
+          <h2>Arquitectura residencial</h2>
+          <p>Viviendas nuevas y reformas integrales con atención al espacio, la luz y el uso cotidiano.</p>
+        </article>
+        <article class="service">
+          <span class="service-number">02</span>
+          <h2>Interiorismo</h2>
+          <p>Diseño de interiores para hogares, oficinas y pequeños negocios.</p>
+        </article>
+        <article class="service">
+          <span class="service-number">03</span>
+          <h2>Dirección creativa de espacios</h2>
+          <p>Concepto, materiales, mobiliario y lenguaje visual para espacios con identidad.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="project-section section-rule" id="proyectos">
+      <div class="section-index">03 / Selección</div>
+      <div class="project-grid">
+        <article class="project-card project-a">
+          <div class="project-visual" role="img" aria-label="Placeholder provisional de proyecto residencial"></div>
+          <div class="project-meta"><span>Residencial</span><span>Valencia</span><span>2026</span></div>
+        </article>
+        <article class="project-card project-b">
+          <div class="project-visual" role="img" aria-label="Placeholder provisional de proyecto de interiorismo"></div>
+          <div class="project-meta"><span>Interiorismo</span><span>Estudio</span><span>2026</span></div>
+        </article>
+        <article class="project-card project-c">
+          <div class="project-visual" role="img" aria-label="Placeholder provisional de espacio comercial"></div>
+          <div class="project-meta"><span>Espacio comercial</span><span>Valencia</span><span>2026</span></div>
+        </article>
+      </div>
+      <p class="placeholder-note">Imágenes provisionales para primera versión · material fotográfico definitivo pendiente.</p>
+    </section>
+
+    <section class="manifesto">
+      <p>Valencia</p><span>·</span><p>Arquitectura</p><span>·</span><p>Interiorismo</p>
+    </section>
+
+    <section class="contact section-rule" id="contacto">
+      <div class="section-index">04 / Contacto</div>
+      <div class="contact-grid">
+        <div class="contact-copy">
+          <h2>Cuéntanos qué espacio tienes entre manos.</h2>
+          <p>Una primera conversación sirve para entender el contexto, ordenar necesidades y ver por dónde empezar.</p>
+          <div class="contact-details">
+            <a href="mailto:raul@rpiera.es">raul@rpiera.es</a>
+            <a href="tel:+34600234567">600 234 567</a>
+          </div>
+        </div>
+        <form action="mailto:raul@rpiera.es" method="post" enctype="text/plain">
+          <label>Nombre<input type="text" name="nombre" autocomplete="name" required></label>
+          <label>Email<input type="email" name="email" autocomplete="email" required></label>
+          <label>Mensaje<textarea name="mensaje" rows="4" required></textarea></label>
+          <button type="submit">Enviar consulta <span aria-hidden="true">→</span></button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="brand footer-brand" href="#inicio"><span class="brand-mark" aria-hidden="true"></span><span>NODO NORTE</span></a>
+    <p>Arquitectura e interiorismo · Valencia</p>
+    <p>Primera versión · Demo</p>
+  </footer>
+</body>
 </html>
