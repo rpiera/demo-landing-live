@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="NODO NORTE · Estudio de arquitectura e interiorismo en Valencia.">
+  <title>NODO NORTE · Arquitectura e interiorismo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper:#F4F1EA;
+      --ink:#1E2328;
+      --blue:#2B63FF;
+      --stone:#A9ADB3;
+      --white:#FCFBF7;
+      --line:rgba(30,35,40,.18);
+      --muted:#666b70;
+      --max:1180px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:"Inter",system-ui,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+    a{color:inherit}
+    button,input,textarea{font:inherit}
+    .shell{width:min(var(--max),calc(100% - 48px));margin-inline:auto}
+    .rule{border-top:1px solid var(--line)}
+    .display,h1,h2,h3,.brand{font-family:"Space Grotesk",system-ui,sans-serif}
+
+    header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+    .nav{min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{font-weight:700;letter-spacing:.16em;text-decoration:none;font-size:1rem}
+    .nav-links{display:flex;gap:28px;align-items:center}
+    .nav-links a{text-decoration:none;font-size:.88rem}
+    .nav-links a:hover{color:var(--blue)}
+
+    .hero{padding:76px 0 84px}
+    .eyebrow{display:flex;align-items:center;gap:10px;text-transform:uppercase;letter-spacing:.14em;font-size:.76rem;font-weight:600}
+    .eyebrow::before{content:"";width:30px;height:2px;background:var(--blue)}
+    .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:58px;align-items:end;margin-top:50px}
+    h1{margin:0;font-size:clamp(3.4rem,7.9vw,7.2rem);line-height:.92;letter-spacing:-.055em;font-weight:700}
+    .hero-copy{padding-bottom:8px}
+    .hero-copy p{font-size:1.06rem;max-width:430px;margin:0 0 28px}
+    .cta{display:inline-flex;align-items:center;gap:18px;background:var(--blue);color:#fff;padding:15px 20px;text-decoration:none;font-weight:600}
+    .cta::after{content:"↗"}
+
+    .hero-visual{margin-top:64px;display:grid;grid-template-columns:1.45fr .55fr;min-height:430px;border:1px solid var(--line);overflow:hidden;background:#d6d4ce}
+    .hero-plane{position:relative;min-height:430px;background:
+      linear-gradient(90deg,transparent 0 14%,rgba(255,255,255,.58) 14% 15.2%,transparent 15.2% 100%),
+      linear-gradient(0deg,transparent 0 20%,rgba(255,255,255,.50) 20% 21.3%,transparent 21.3% 100%),
+      linear-gradient(137deg,#858c92 0 34%,#d9d6ce 34% 66%,#aeb3b7 66% 100%)}
+    .hero-plane::before,.hero-plane::after{content:"";position:absolute;border:1px solid rgba(30,35,40,.35)}
+    .hero-plane::before{width:43%;height:58%;right:11%;top:12%}
+    .hero-plane::after{width:31%;height:34%;left:13%;bottom:11%}
+    .hero-meta{background:var(--ink);color:var(--paper);padding:30px;display:flex;flex-direction:column;justify-content:space-between}
+    .hero-meta small{letter-spacing:.14em;text-transform:uppercase;color:var(--stone)}
+    .hero-meta strong{font-family:"Space Grotesk";font-size:1.7rem;line-height:1.05}
+    .hero-meta span{font-size:.82rem;color:#c9cbce}
+
+    .signal{display:grid;grid-template-columns:repeat(3,1fr);background:var(--ink);color:var(--paper)}
+    .signal span{padding:18px 24px;text-transform:uppercase;letter-spacing:.14em;font-size:.72rem;font-weight:600;border-right:1px solid rgba(244,241,234,.22)}
+    .signal span:nth-child(2){background:var(--blue);color:#fff}.signal span:last-child{border-right:0}
+
+    section{padding:96px 0}
+    .section-grid{display:grid;grid-template-columns:.6fr 1.4fr;gap:70px;align-items:start}
+    .section-label{text-transform:uppercase;letter-spacing:.14em;font-size:.74rem;font-weight:600;color:var(--muted)}
+    h2{margin:0;font-size:clamp(2.3rem,4.7vw,4.35rem);line-height:1.01;letter-spacing:-.045em}
+    .intro p{font-size:1.08rem;max-width:700px;margin:28px 0 0}
+
+    .services{margin-top:48px}
+    .service{display:grid;grid-template-columns:100px 1fr 1fr;gap:30px;padding:34px 0;border-top:1px solid var(--line);align-items:baseline}
+    .service:last-child{border-bottom:1px solid var(--line)}
+    .service-num{color:var(--blue);font-family:"Space Grotesk";font-weight:700}
+    .service h3{margin:0;font-size:clamp(1.55rem,2.8vw,2.35rem);letter-spacing:-.03em}
+    .service p{margin:0;color:#555b60;max-width:430px}
+
+    .principles{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:46px}
+    .principle{background:var(--paper);padding:28px;min-height:190px}
+    .principle b{display:block;color:var(--blue);font-family:"Space Grotesk";margin-bottom:52px}
+    .principle span{font-family:"Space Grotesk";font-size:1.28rem;font-weight:600}
+
+    .contact-wrap{background:var(--ink);color:var(--paper);padding:96px 0}
+    .contact-grid{display:grid;grid-template-columns:.86fr 1.14fr;gap:80px}
+    .contact-grid h2{font-size:clamp(2.9rem,6vw,5.7rem);line-height:.95;color:var(--paper)}
+    .contact-copy p{max-width:460px;color:#c6c8ca}
+    .contact-details{display:grid;gap:8px;margin-top:34px}
+    .contact-details a{text-decoration:none;color:#fff}
+    form{display:grid;gap:18px}
+    label{display:grid;gap:8px;text-transform:uppercase;letter-spacing:.1em;font-size:.74rem;color:#c6c8ca}
+    input,textarea{width:100%;border:0;border-bottom:1px solid rgba(244,241,234,.35);background:transparent;color:#fff;padding:10px 0 14px;outline:none}
+    input:focus,textarea:focus{border-color:var(--blue)}
+    textarea{min-height:120px;resize:vertical}
+    .submit{margin-top:12px;width:fit-content;border:0;background:var(--blue);color:#fff;padding:15px 22px;font-weight:600;cursor:pointer}
+
+    footer{background:var(--ink);color:#aeb1b4;border-top:1px solid rgba(244,241,234,.15)}
+    .footer-grid{min-height:90px;display:flex;align-items:center;justify-content:space-between;gap:24px;text-transform:uppercase;letter-spacing:.08em;font-size:.74rem}
+
+    @media(max-width:860px){
+      .shell{width:min(100% - 32px,var(--max))}.nav{min-height:68px}.nav-links a:not(.contact-link){display:none}
+      .hero{padding-top:56px}.hero-grid,.section-grid,.contact-grid{grid-template-columns:1fr;gap:34px}.hero-visual{grid-template-columns:1fr}.hero-meta{min-height:220px}
+      .signal{grid-template-columns:1fr}.signal span{border-right:0;border-bottom:1px solid rgba(244,241,234,.22)}
+      .service{grid-template-columns:52px 1fr;gap:20px}.service p{grid-column:2}.principles{grid-template-columns:1fr}
+      section,.contact-wrap{padding:72px 0}
+    }
+    @media(max-width:520px){
+      h1{font-size:clamp(3.1rem,16vw,5.7rem)}.hero-grid{margin-top:38px}.hero-visual,.hero-plane{min-height:340px}.hero-meta{min-height:190px}
+      .service{grid-template-columns:40px 1fr}.footer-grid{padding:24px 0;align-items:flex-start;flex-direction:column}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="shell nav">
+      <!-- WEB-DEMO:LOGO:START -->
+      <a class="brand" href="#inicio" aria-label="NODO NORTE, inicio">NODO NORTE</a>
+      <!-- WEB-DEMO:LOGO:END -->
+      <nav class="nav-links" aria-label="Navegación principal">
+        <a href="#estudio">Estudio</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#proceso">Enfoque</a>
+        <a class="contact-link" href="#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <section class="hero">
+      <div class="shell">
+        <div class="eyebrow">Arquitectura + interiorismo</div>
+        <div class="hero-grid">
+          <h1>Espacios que empiezan por una buena pregunta.</h1>
+          <div class="hero-copy">
+            <p>Arquitectura e interiorismo para lugares que deben funcionar, durar y tener carácter.</p>
+            <a class="cta" href="#servicios">Ver proyectos</a>
+          </div>
+        </div>
+
+        <!-- WEB-DEMO:HERO-IMAGE:START -->
+        <div class="hero-visual" role="img" aria-label="Placeholder gráfico de proyecto arquitectónico">
+          <div class="hero-plane"></div>
+          <div class="hero-meta">
+            <small>Imagen provisional</small>
+            <strong>Materia, luz<br>y proporción.</strong>
+            <span>Se sustituirá cuando haya fotografía definitiva.</span>
+          </div>
+        </div>
+        <!-- WEB-DEMO:HERO-IMAGE:END -->
+
+        <div class="signal" aria-label="Valencia, Arquitectura, Interiorismo">
+          <span>Valencia</span>
+          <span>Arquitectura</span>
+          <span>Interiorismo</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="intro rule" id="estudio">
+      <div class="shell section-grid">
+        <div class="section-label">01 · Estudio</div>
+        <div>
+          <h2>Diseño preciso para espacios que se viven de verdad.</h2>
+          <p>En NODO NORTE diseñamos viviendas, espacios de trabajo e interiores comerciales desde una mirada funcional y precisa. Cada proyecto parte del contexto, las necesidades reales y una idea clara.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="rule" id="servicios">
+      <div class="shell">
+        <div class="section-grid">
+          <div class="section-label">02 · Servicios</div>
+          <h2>Del espacio construido al lenguaje que lo hace reconocible.</h2>
+        </div>
+        <div class="services">
+          <article class="service">
+            <div class="service-num">01</div>
+            <h3>Arquitectura residencial</h3>
+            <p>Viviendas nuevas y reformas integrales con atención al espacio, la luz y el uso cotidiano.</p>
+          </article>
+          <article class="service">
+            <div class="service-num">02</div>
+            <h3>Interiorismo</h3>
+            <p>Diseño de interiores para hogares, oficinas y pequeños negocios.</p>
+          </article>
+          <article class="service">
+            <div class="service-num">03</div>
+            <h3>Dirección creativa de espacios</h3>
+            <p>Concepto, materiales, mobiliario y lenguaje visual para espacios con identidad.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="rule" id="proceso">
+      <div class="shell">
+        <div class="section-grid">
+          <div class="section-label">03 · Enfoque</div>
+          <h2>Contexto, uso e identidad antes que gesto.</h2>
+        </div>
+        <div class="principles">
+          <div class="principle"><b>01</b><span>Leer el lugar y sus límites.</span></div>
+          <div class="principle"><b>02</b><span>Resolver el uso con precisión.</span></div>
+          <div class="principle"><b>03</b><span>Dar carácter sin ruido.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-wrap" id="contacto">
+      <div class="shell contact-grid">
+        <div class="contact-copy">
+          <div class="section-label" style="color:#A9ADB3">04 · Contacto</div>
+          <h2>Hablemos de tu espacio.</h2>
+          <p>Cuéntanos qué necesitas, dónde está el proyecto y en qué punto se encuentra. Te responderemos para valorar el siguiente paso.</p>
+          <div class="contact-details">
+            <a href="mailto:raul@rpiera.es">raul@rpiera.es</a>
+            <!-- WEB-DEMO:PHONE:START -->
+            <a href="tel:+34600234567">600 234 567</a>
+            <!-- WEB-DEMO:PHONE:END -->
+          </div>
+        </div>
+        <form onsubmit="event.preventDefault();" aria-label="Formulario de contacto">
+          <label>Nombre<input type="text" name="nombre" autocomplete="name" required></label>
+          <label>Email<input type="email" name="email" autocomplete="email" required></label>
+          <label>Mensaje<textarea name="mensaje" required></textarea></label>
+          <button class="submit" type="submit">Enviar consulta</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell footer-grid">
+      <span>© 2026 NODO NORTE</span>
+      <span>Valencia · Arquitectura · Interiorismo</span>
+    </div>
+  </footer>
+</body>
+</html>
