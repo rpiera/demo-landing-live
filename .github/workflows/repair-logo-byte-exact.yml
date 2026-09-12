@@ -1,0 +1,44 @@
+name: Repair Casa Limon logo byte-exact
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/repair-logo-byte-exact.yml
+
+permissions:
+  contents: write
+
+jobs:
+  restore-logo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Download original Gmail attachment and verify bytes
+        env:
+          ATTACHMENT_URL: "https://sdmntprnortheu.oaiusercontent.com/files/00000000-0f04-81f4-bdfb-994b5477eecc/raw?se=2026-09-12T15%3A01%3A18Z&sp=r&sv=2026-02-06&sr=b&scid=de10f1a7-63c7-51d0-92e5-a157ba21f907&skoid=c30e7ce7-1f51-4051-a377-288cdba21c02&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-12T00%3A45%3A16Z&ske=2026-09-13T00%3A45%3A16Z&sks=b&skv=2026-02-06&sig=D/kCCAp04C%2BZ29EA6kTiJl73/Q90FU3FlsXQh7WPbzQ%3D"
+          EXPECTED_SIZE: "27953"
+          EXPECTED_SHA256: "3b0c745e10124a472e483f5084c9add69c663a8450feafa3b43cc4761437dd97"
+        run: |
+          set -euo pipefail
+          curl --fail --location --silent --show-error "$ATTACHMENT_URL" --output casa-limon-logo.png
+          actual_size="$(wc -c < casa-limon-logo.png | tr -d ' ')"
+          actual_sha="$(sha256sum casa-limon-logo.png | awk '{print $1}')"
+          echo "downloaded_size=$actual_size"
+          echo "downloaded_sha256=$actual_sha"
+          test "$actual_size" = "$EXPECTED_SIZE"
+          test "$actual_sha" = "$EXPECTED_SHA256"
+      - name: Commit exact binary to main
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- casa-limon-logo.png
+          if git diff --cached --quiet; then
+            echo "Binary already exact; nothing to commit."
+          else
+            git commit -m "Restore Casa Limon logo byte-for-byte"
+            git push origin HEAD:main
+          fi
